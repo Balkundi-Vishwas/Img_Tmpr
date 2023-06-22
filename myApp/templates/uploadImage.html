@@ -1,0 +1,160 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <title> Test Authenticity of your Image! </title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+    </head>
+
+    <body>
+        
+        <div class="heading">
+            <center>
+                <label class="display-5"><b>Know Your Image!</b></label>
+            </center>
+        </div>
+        
+        <div class="form">
+            <form action="{% url 'result' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                    
+                <p>
+                    <div>
+                        <center>
+                            <div>
+                                {% if val == 1 or val == 0 %}
+                                <img id="preview-selected-image" class="image" src="data:image/jpeg;base64,{{ img }}">
+                                {% if val == 1 %}
+                                <label class="display-5 bg-success border border-dark m-2 p-2">
+                                    {{ res }}
+                                </label>
+                                {% else %}
+                                <label class="display-5 bg-warning border border-dark m-2 p-2">
+                                    {{ res }}
+                                </label>
+                                {% endif %}
+                                {% else %}
+                                <img id="preview-selected-image" class="image" src="{% static 'imgAlt.jpg' %}"/>
+                                <label class="display-5 bg-info border border-dark m-2 p-2">
+                                    Result will be displayed here
+                                </label>
+                                {% endif %}
+                            </div>
+                        </center>
+                        <br/>
+                        <center>
+                            <p>
+                                <label class="btn btn-primary" for="file-upload">Click here to Upload Image</label>
+                            </p>
+                        </center>
+                        <input type="file" id="file-upload" name="upload" accept="image/*" onchange="previewImage(event);" style="display: none;" />
+                        <center>
+                            <p>
+                                <button type="submit" id="submit" class="btn btn-success" disabled>Check Image for Tampering</button>
+                            </p>
+                        </center>
+                    </div>
+                </p>
+                
+            </form>
+        </div>
+        <hr/>
+        <div class="d-flex justify-content-center">
+            <p class="display-6"><u>Click on one of the buttons below to know more about the forgery methods</u></p>
+        </div>
+
+        <div class="container">
+            <div class="d-flex row justify-content-around">
+                <div class="col-3">
+                    <button class="btn btn-dark w-100" id="splicebtn" onclick="toggleText(this)">Splicing</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-dark w-100" id="cmbtn" onclick="toggleText(this)">Copy-Move</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-dark w-100" id="rembtn" onclick="toggleText(this)">Removal</button>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="textbox border border-dark">
+                    <div class="textPara display-7" style="display: block">
+                        <center>
+                            <br>
+                            <img src="{% static 'tamper.png' %}" width="400px"><br><br>
+                            Click on one of the buttons above to know more about the forgery methods
+                        </center>
+                    </div>
+                    <div class="textPara display-7" id="splice" style="display: none">
+                        <center>
+                            <br>
+                            <img src="{% static 'splice.png' %}" width="700px"><br><br>
+                            Image splicing, also known as image manipulation or image forgery, refers to the process of altering or combining elements from multiple images to create a deceptive or misleading image. It is a form of digital image manipulation where parts of one or more images are extracted and combined to create a new composite image.
+                            the intention is to deceive viewers by presenting a modified image as an authentic, unaltered photograph. Spliced images can be used to hide or add objects, change the context, or manipulate the visual information within the image.
+                        </center>
+                    </div>
+                    <div class="textPara display-7" id="cm" style="display: none">
+                        <center>
+                            <br>
+                            <img src="{% static 'copymove.png' %}" width="700px"><br><br>
+                            Copy-move tampering is a specific form of image manipulation where a portion of an image is copied and pasted within the same image to conceal or duplicate objects or areas. The copied region is then moved and overlaid onto a different location, giving the appearance of additional objects or the removal of existing ones.
+                            This technique is often employed to alter the content of an image while maintaining its visual consistency. By copying and pasting elements, such as objects or regions, the tampered image aims to deceive viewers into perceiving the modified content as genuine and unaltered.
+                        </center>
+                    </div>
+                    <div class="textPara display-7" id="rem" style="display: none">
+                        <center>
+                            <br>
+                            <img src="{% static 'removal.png' %}" width="700px"><br><br>
+                            Object removal deletes an object from an original image followed by in-painting to create a tampered image. It erases regions from images and inpaints missing regions with visually plausible contents.
+                            Relying on the generator itself to perform object removal tends to lead to a completely re-synthesized image, while we only desire to manipulate one region.
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+
+    </body>
+
+    <script>
+
+        const previewImage = (event) => {
+            const imageFiles = event.target.files;
+            const submitButton = document.getElementById('submit');
+
+            if (imageFiles.length > 0) {
+                const imageSrc = URL.createObjectURL(imageFiles[0]);
+                const imagePreviewElement = document.querySelector("#preview-selected-image");
+                imagePreviewElement.src = imageSrc;
+                submitButton.disabled = false;
+            }
+        };
+        function toggleText(el) {
+            const buttonId = el.id;
+            const allPara = document.getElementsByClassName("textPara");
+            for (var i = 0; i < allPara.length; i++) {
+                if (allPara[i].id != buttonId) {
+                    allPara[i].style.display = "none";
+                    console.log("yes")
+                }
+            }
+            if (buttonId == "splicebtn") {
+                if (splice.style.display == "none") splice.style.display = "block";
+                else splice.style.display = "none";
+            }
+            else if (buttonId == "cmbtn") {
+                if (cm.style.display == "none") cm.style.display = "block";
+                else cm.style.display = "none";
+            }
+            else {
+                if (rem.style.display == "none") rem.style.display = "block";
+                else rem.style.display = "none";
+            }
+        }
+
+    </script>
+
+</html> 
