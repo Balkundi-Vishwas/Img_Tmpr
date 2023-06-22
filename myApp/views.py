@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from keras.models import load_model
+import os
 import numpy as np
 from PIL import Image
 import base64
@@ -21,7 +22,8 @@ def result(request):
         img = prepare_image(img_file)
         img = img.reshape(1, 128, 128, 3)
 
-        model = load_model('G:/DSCE notes/Minor Project 6th Sem/Image_Tamper_Detect/myApp/static/UNet Model.h5')
+        filepath = os.path.join('myApp', 'static', 'model.h5')
+        model = load_model(filepath)
         predicted = model.predict(img)
         data = io.BytesIO()
         img_file.save(data, "JPEG")
