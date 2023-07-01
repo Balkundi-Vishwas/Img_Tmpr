@@ -1,0 +1,125 @@
+<!-- {% load static %} -->
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+    <title>landing page</title>
+    
+  </head>
+  <body class = "h-screen bg-gradient-to-r from-fuchsia-600 to-pink-600">
+    <!-- bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 -->
+    
+    <nav class="relative container mx-auto p-6">
+        
+        <div class = "flex items-center justify-between">
+            <p class="text-black" style="font-family: 'Courier New', Courier, monospace;">Image Tampering Detection</p>
+            
+            <div class = "flex items-center justify-between space-x-6">
+                <form action="home"><button type="submit" class="text-white hover:bg-violet-500 rounded-lg p-3">Home</button></form>
+                <form action="removal"><button type="submit" class="text-white hover:bg-violet-500 rounded-lg p-3">Removal</button></form>
+                <form action="splicing"><button type="submit" class="text-white hover:bg-violet-500 rounded-lg p-3">Splicing</button></form>
+                <form action="copymove"><button type="submit" class="text-white hover:bg-violet-500 rounded-lg p-3">Copy-Move</button></form>
+                <form action="quiz"><button type="submit" class="text-white hover:bg-violet-500 rounded-lg p-3">Quiz</button></form>
+                <!-- <a href="index.html" class="text-white hover:bg-violet-500 rounded-lg p-3">Home</a>
+                <a href="object_removal_page.html" class="text-white hover:bg-violet-500 rounded-lg p-3">Removal</a>
+                <a href="splicing_page.html" class="text-white hover:bg-violet-500 rounded-lg p-3">Splicing</a>
+                <a href="copy-move_page.html" class="text-white hover:bg-violet-500 rounded-lg p-3">Copy-move</a>
+                <a href="quiz_page.html" class="text-white hover:bg-violet-500 rounded-lg p-3">Quiz</a> -->
+                
+            </div>
+        </div>
+    </nav>
+    <div>
+        <header>
+            <center>
+                <p class="text-slate-300 font-mono" style="font-size: 80px;">Know Your Image</p>
+            </center>
+        </header>
+    </div> 
+    <div class="form">
+        <form action="{% url 'result' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+            <div class="p-6">
+                <center>
+                    <p class = "text-violet-300 italic" style="font-size: 20px;">
+                        Welcome to Image Tampering Detection. You can upload your image to verify if it is a tampered image or authentic
+                    </p>
+                </center>
+            </div>
+            <div>
+
+            </div>
+            <center>
+                {% if val == 1 or val == 0 %}
+                <div  class="m-100">
+                    <img id="preview-selected-image" class="image" width="200" src="data:image/jpeg;base64,{{ img }}"/>
+                </div>
+                {% if val == 1 %}
+                <div class="text-violet-300 m-6 rounded-lg bg-gradient-to-r from-blue-700 via-blue-500 to-blue-700 w-96" style="font-size: 40px;">
+                    Authentic Image    
+                </div>
+                
+                {% else %}
+                <div class="text-violet-300 m-6 rounded-lg bg-gradient-to-r from-red-700 via-red-500 to-red-700 w-96" style="font-size: 40px;">
+                    Tampered Image   
+                </div>
+                
+                {% endif %}
+
+                {% else %}
+                <div class="m-100">
+                   
+                    <img id="preview-selected-image" class="image" width="200" src="{% static 'imgAlt.jpg' %}"/>
+                </div>
+                <div class="text-violet-300 m-6 rounded-lg bg-gradient-to-r from-yellow-700 via-yellow-500 to-yellow-700 w-96" style="font-size: 40px;">
+                    Result
+                    
+                </div>
+                {% endif %}
+                <!-- <div class="text-violet-300 m-6 rounded-lg bg-gradient-to-r from-red-700 via-red-500 to-red-700 w-96" style="font-size: 40px;">
+                    Tampered Image
+                     
+                 </div>
+
+                <div class="text-violet-300 m-6 rounded-lg bg-gradient-to-r from-green-700 via-green-500 to-green-700 w-96" style="font-size: 40px;">
+                    Authentic Image
+                     
+                </div> -->
+                
+            </center>
+            <div>
+                <center>
+                    <div class="flex items-center justify-center">
+                        <div class="mr-10">
+                            
+                            <label for = "file" class="text-sm text-neutral-50 rounded-full bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 p-6">
+                                Upload Image
+                            </label>
+                            <input type="file"  accept="image/*" name="upload" id="file"  onchange="loadFile(event)" style="display: none;">                        </div>
+                        <div class="ml-10">
+                            <button type="submit" class="text-sm text-neutral-50 rounded-full bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 px-8 py-6">
+                                Test Image
+                            </button>
+                        </div>
+
+                    </div>
+                </center>
+            </div>
+        </form>
+    </div>
+    
+    
+  </body>
+  <script>
+    var loadFile = function(event) {
+        var image = document.getElementById('preview-selected-image');
+        image.src = URL.createObjectURL(event.target.files[0]);
+        image.height = 200;
+        image.width = 200;
+        image.style.textAlign = "center";
+    };
+    </script>
+</html>

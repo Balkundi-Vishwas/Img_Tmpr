@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+    <title>Copy move</title>
+</head>
+<body class = "h-screen bg-gradient-to-r from-fuchsia-600 to-pink-600">
+    <!-- bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 -->
+    <!-- navbar -->
+    <nav class="relative container mx-auto p-6">
+        <!-- flex container -->
+        <div class = "flex items-center justify-between">
+            <p class="text-black text-violet-400" style="font-family: 'Courier New', Courier, monospace;">Image Tampering Detection</p>
+            <!-- flex container 2 -->
+            <div class = "flex items-center justify-between space-x-6">
+                <form action="home"><button type="submit" class="text-white hover:bg-violet-500 rounded-lg p-3">Home</button></form>
+                <form action="removal"><button type="submit" class="text-white hover:bg-violet-500 rounded-lg p-3">Removal</button></form>
+                <form action="splicing"><button type="submit" class="text-white hover:bg-violet-500 rounded-lg p-3">Splicing</button></form>
+                <form action="copymove"><button type="submit" class="text-white hover:bg-violet-500 rounded-lg p-3">Copy-Move</button></form>
+                <form action="quiz"><button type="submit" class="text-white hover:bg-violet-500 rounded-lg p-3">Quiz</button></form>
+                <!-- <a href="index.html" class="text-white hover:bg-violet-500 rounded-lg p-3">Home</a>
+                <a href="object_removal_page.html" class="text-white hover:bg-violet-500 rounded-lg p-3">Removal</a>
+                <a href="splicing_page.html" class="text-white hover:bg-violet-500 rounded-lg p-3">Splicing</a>
+                <a href="copy-move_page.html" class="text-white hover:bg-violet-500 rounded-lg p-3">Copy-move</a>
+                <a href="quiz_page.html" class="text-white hover:bg-violet-500 rounded-lg p-3">Quiz</a> -->
+            </div>
+        </div>
+    </nav>
+    <div>
+        <header>
+            <center>
+                <p class="text-slate-300" style="font-size: 80px;">Copy-Move Image Tampering</p>
+            </center>
+        </header>
+    </div> 
+    <div class="mt-10">
+        <center>
+            <img class="image" src="{% static 'copymove.png' %}"/>
+        </center>
+    </div>
+    <div class="p-6">
+        <center>
+            <p class = "text-violet-300 italic" style="font-size: 20px;">
+                Copy-move tampering is a specific form of image manipulation where a portion of an image is copied and pasted within the same image to conceal or duplicate objects or areas. The copied region is then moved and overlaid onto a different location, giving the appearance of additional objects or the removal of existing ones.
+                            This technique is often employed to alter the content of an image while maintaining its visual consistency. By copying and pasting elements, such as objects or regions, the tampered image aims to deceive viewers into perceiving the modified content as genuine and unaltered.
+            </p>
+        </center>
+    </div>
+
+    
+</body>
+</html>

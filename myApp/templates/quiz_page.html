@@ -1,0 +1,225 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+    <title>Document</title>
+</head>
+<body class = "h-screen bg-gradient-to-r from-fuchsia-600 to-pink-600">
+    <!-- bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 -->
+    
+    <nav class="relative container mx-auto p-6">
+       
+        <div class = "flex items-center justify-between">
+            <p class="text-black" style="font-family: 'Courier New', Courier, monospace;">Image Tampering Detection</p>
+            
+            <div class = "flex items-center justify-between space-x-6">
+                <form action="home"><button type="submit" class="text-white hover:bg-violet-500 rounded-lg p-3">Home</button></form>
+                <form action="removal"><button type="submit" class="text-white hover:bg-violet-500 rounded-lg p-3">Removal</button></form>
+                <form action="splicing"><button type="submit" class="text-white hover:bg-violet-500 rounded-lg p-3">Splicing</button></form>
+                <form action="copymove"><button type="submit" class="text-white hover:bg-violet-500 rounded-lg p-3">Copy-Move</button></form>
+                <form action="quiz"><button type="submit" class="text-white hover:bg-violet-500 rounded-lg p-3">Quiz</button></form>
+                <!-- <a href="index.html" class="text-white hover:bg-violet-500 rounded-lg p-3">Home</a>
+                <a href="object_removal_page.html" class="text-white hover:bg-violet-500 rounded-lg p-3">Removal</a>
+                <a href="splicing_page.html" class="text-white hover:bg-violet-500 rounded-lg p-3">Splicing</a>
+                <a href="copy-move_page.html" class="text-white hover:bg-violet-500 rounded-lg p-3">Copy-move</a>
+                <a href="quiz_page.html" class="text-white hover:bg-violet-500 rounded-lg p-3">Quiz</a> -->
+            </div>
+        </div>
+    </nav>
+    <div>
+        <header>
+            <center>
+                <p class="text-slate-300" style="font-size: 80px;">Quiz</p>
+            </center>
+        </header>
+    </div> 
+    <div class="p-6">
+        <center>
+            <p class = "text-violet-300 italic" style="font-size: 20px;">
+                Do you think your eyes are very sharp? Then guess which of these images are authentic or tampered and find out!
+            </p>
+        </center>
+    </div>
+    
+    
+    <!-- <form id="quiz-form"> -->
+    <div id="quiz-form">
+        <div>
+            <center>
+                <img src="{% static 'Au1.jpg' %}" width="400" height="400">
+            </center>
+        </div>
+        <div class="flex items-center justify-center">
+            <center>
+                <div class="m-6 text-sm text-neutral-50 rounded-full bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 p-3">
+                    <input name="ans1" value="Au" type="radio" id="q1op1"/>
+                    <label for="q1op1">Authentic</label>
+                </div>
+                
+                <div class="m-6 text-sm text-neutral-50 rounded-full bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 p-3">
+                    <input name="ans1" value="Tp" type="radio" id="q1op2"/>
+                    <label for="q1op2">Tampered</label>
+                </div>
+
+                <div id="ans1" class="text-violet-300 italic m-6">
+
+                </div>
+            </center>
+            
+        </div>
+        <div>
+            <center>
+                <img src="{% static 'Tp1.jpg' %}" width="400" height="400">
+            </center>
+        </div>
+        <div class="flex items-center justify-center">
+            <center>
+                <div class="m-6 text-sm text-neutral-50 rounded-full bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 p-3">
+                    <input name="ans2" value="Au" type="radio" id="q2op1"/>
+                    <label for="q2op1">Authentic</label>
+                </div>
+                
+                <div class="m-6 text-sm text-neutral-50 rounded-full bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 p-3">
+                    <input name="ans2" value="Tp" type="radio" id="q2op2"/>
+                    <label for="q2op2">Tampered</label>
+                </div>
+
+                <div id="ans2" class="text-violet-300 italic m-6">
+                    
+                </div>
+            </center>
+            
+        </div>
+        <div>
+            <center>
+                <img src="{% static 'Au2.jpg' %}" width="400" height="400">
+            </center>
+        </div>
+        <div class="flex items-center justify-center">
+            <center>
+                <div class="m-6 text-sm text-neutral-50 rounded-full bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 p-3">
+                    <input name="ans3" value="Au" type="radio" id="q3op1"/>
+                    <label for="q3op1">Authentic</label>
+                </div>
+                
+                <div class="m-6 text-sm text-neutral-50 rounded-full bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 p-3">
+                    <input name="ans3" value="Tp" type="radio" id="q3op2"/>
+                    <label for="q3op2">Tampered</label>
+                </div>
+
+                <div id="ans3" class="text-violet-300 italic m-6">
+                    
+                </div>
+            </center>
+            
+        </div>
+        <div>
+            <center>
+                <img src="{% static 'Tp2.jpg' %}" width="400" height="400">
+            </center>
+        </div>
+        <div class="flex items-center justify-center">
+            <center>
+                <div class="m-6 text-sm text-neutral-50 rounded-full bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 p-3">
+                    <input name="ans4" value="Au" type="radio" id="q4op1"/>
+                    <label for="q4op1">Authentic</label>
+                </div>
+                
+                <div class="m-6 text-sm text-neutral-50 rounded-full bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 p-3">
+                    <input name="ans4" value="Tp" type="radio" id="q4op2"/>
+                    <label for="q4op2">Tampered</label>
+                </div>
+
+                <div id="ans4" class="text-violet-300 italic m-6">
+                    
+                </div>
+            </center>
+            
+        </div>
+        <div>
+            <center>
+                <img src="{% static 'Au3.jpg' %}" width="400" height="400">
+            </center>
+        </div>
+        <div class="flex items-center justify-center">
+            <center>
+                <div class="m-6 text-sm text-neutral-50 rounded-full bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 p-3">
+                    <input name="ans5" value="Au" type="radio" id="q5op1"/>
+                    <label for="q5op1">Authentic</label>
+                </div>
+                
+                <div class="m-6 text-sm text-neutral-50 rounded-full bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 p-3">
+                    <input name="ans5" value="Tp" type="radio" id="q5op2"/>
+                    <label for="q5op2">Tampered</label>
+                </div>
+
+                <div id="ans5" class="text-violet-300 italic m-6">
+                    
+                </div>
+            </center>
+            
+        </div>
+        <div>
+            <center>
+                <button onclick="getResults()" class="m-6 text-sm text-neutral-50 rounded-full bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 px-8 py-6">
+                    Submit
+                </button>
+                    
+                  
+            </center>
+        </div>
+    </div>    
+    <center>
+        <div class="text-violet-300 italic m-6" style="font-size: 20px;">
+            <div id="result"></p>
+        </div>
+    </center>
+    <br/>
+    <br/>
+    <center>
+        <form>
+            <button class="m-6 text-sm text-neutral-50 rounded-full bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 px-8 py-6">
+                Retry
+            </button>
+        </form>
+        
+    </center>
+    <!-- </form> -->
+    
+</body>
+<script>
+    function getResults() {
+        console.log("in getResults");
+        const correctAnswers = ["Au","Au","Tp", "Tp","Au", "Au","Tp","Tp","Au","Au"];
+        const form = document.querySelector("#quiz-form");
+        const result = document.querySelector("#result");
+        const radios = document.getElementsByTagName("input");
+        
+    
+        let score = 0;
+        let j=0;
+
+        
+        for(let i=0;i<radios.length;i++) {
+            const display = document.getElementById(radios[i].name);
+            if(correctAnswers[i] == radios[i].value && radios[i].checked) {
+                
+                display.textContent = `Correct Answer`;
+                score++;
+            }
+            else if(radios[i].checked) {
+                display.textContent = `Wrong Answer`;
+                
+            }
+        }
+
+    
+    result.textContent = `You scored ${score} out of 5`;
+    console.log(`You scored ${score} out of 5}`);
+    console.log(j);
+}
+</script>
+</html>
